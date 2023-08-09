@@ -346,14 +346,14 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 70d3687701c2b424f80b95cbfcd0db75, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 36c9abe3bb8277a48b67b2763e320286, type: 2}
+      objectReference: {fileID: 22100000, guid: b9974aeeac9c5e0468fcdb9ce00d9fb9, type: 2}
     - target: {fileID: 5866666021909216657, guid: 70d3687701c2b424f80b95cbfcd0db75, type: 3}
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 70d3687701c2b424f80b95cbfcd0db75, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -999,6 +999,7 @@ MonoBehaviour:
   _attackDistacne: 2
   _attackDelay: 3
   _attackDamage: 1
+  _launchPower: 3
 --- !u!195 &1735577886
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1216,6 +1217,7 @@ GameObject:
   - component: {fileID: 5866666021908873153}
   - component: {fileID: 1735577886}
   - component: {fileID: 1735577885}
+  - component: {fileID: 5866666021908873154}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2895,6 +2897,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &5866666021908873154
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149162376961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &5901452235262637880
 Transform:
   m_ObjectHideFlags: 0

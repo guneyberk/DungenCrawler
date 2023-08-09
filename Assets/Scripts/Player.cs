@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
@@ -17,8 +12,10 @@ public class Player : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
     private Enemy _target;
-    private float _attackDistance = 0.5f;
-    private float _attackTime=3f;
+    private float _attackDistance = 1.5f;
+    private float _attackTime = 3f;
+    //private float _nextAttackTime;
+    private float _attackDelay = 3f;
 
     private void Awake()
     {
@@ -29,7 +26,7 @@ public class Player : MonoBehaviour
     {
         _health = _maxHealth;
     }
-    
+
 
     public void TakeDamage(int amount)
     {
@@ -42,22 +39,17 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-       
 
-       
-        _animator.SetFloat("Speed",_navMeshAgent.velocity.magnitude);
-        if(Input.GetMouseButtonDown(0))
+        _animator.SetFloat("Speed", _navMeshAgent.velocity.magnitude);
+        if (Input.GetMouseButtonDown(0))
         {
             HandleClick();
         }
-        else if(_target != null) 
+        else if (_target != null)
         {
+            if(ShouldAttackTarget())
+                Attack();
             MoveToTarget();
-        }
-
-        if (ShouldAttackTarget())
-        {
-            Attack();
         }
     }
 
@@ -65,12 +57,10 @@ public class Player : MonoBehaviour
     {
         float distanceToTarget = Vector3.Distance(transform.position, _target.transform.position);
 
-        if(distanceToTarget > _attackDistance)
+        if (distanceToTarget > _attackDistance)
             return false;
-        else 
-            return true;
 
-        if(Time.time > _attackTime)
+        if (Time.time < _attackTime)
         {
             return false;
         }
@@ -96,7 +86,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < hits; i++)
         {
             var enemy = _results[i].collider.GetComponentInParent<Enemy>();
-            if(enemy != null)
+            if (enemy != null)
             {
                 _target = enemy;
                 return true;
@@ -120,10 +110,13 @@ public class Player : MonoBehaviour
     private void Attack()
     {
         _animator.SetTrigger("Attack");
+        _attackTime = Time.time + _attackDelay;
+        _target.Die();
     }
 
     private void Die()
     {
+        //Debug.Log("here");
         SceneManager.LoadScene(0);
     }
 }

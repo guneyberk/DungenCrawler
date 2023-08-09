@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _attackDistacne = 2;
     [SerializeField] float _attackDelay = 3;
     [SerializeField] private int _attackDamage=1;
-    [SerializeField] private int _launchPower=3;
+    //[SerializeField] private int _launchPower=3;
 
     private void Awake()
     {
@@ -61,15 +61,16 @@ public class Enemy : MonoBehaviour
     [ContextMenu("Die")]
     public void Die()
     {
+        Debug.Log("Here");
         _navMeshAgent.enabled = false;
         _animation.enabled = false;
-        var launchVelocity = -transform.position + transform.up;
-        var rigidbodies = GetComponentsInChildren<Rigidbody>();
+        //var launchVelocity = -transform.position + transform.up;
+        //var rigidbodies = GetComponentsInChildren<Rigidbody>();
 
         //launchVelocity *= _launchPower;
 
-        foreach(var rb in rigidbodies) 
-        { rb.velocity = launchVelocity;}
+        //foreach(var rb in rigidbodies) 
+        //{ rb.velocity = launchVelocity;}
     }
 }
 
