@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float _attackDistacne = 2;
     [SerializeField] float _attackDelay = 3;
     [SerializeField] private int _attackDamage=1;
+    private bool _dead;
+
     //[SerializeField] private int _launchPower=3;
 
     private void Awake()
@@ -64,6 +66,11 @@ public class Enemy : MonoBehaviour
         Debug.Log("Here");
         _navMeshAgent.enabled = false;
         _animation.enabled = false;
+
+        if (_dead)
+            return;
+        _dead = true;
+        Destroy(gameObject,5f) ;
         //var launchVelocity = -transform.position + transform.up;
         //var rigidbodies = GetComponentsInChildren<Rigidbody>();
 
