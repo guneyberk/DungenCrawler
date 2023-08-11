@@ -75,7 +75,6 @@ public class Enemy : MonoBehaviour
         //var rigidbodies = GetComponentsInChildren<Rigidbody>();
 
         //launchVelocity *= _launchPower;
-
         //foreach(var rb in rigidbodies) 
         //{ rb.velocity = launchVelocity;}
     }
